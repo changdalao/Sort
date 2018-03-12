@@ -12,7 +12,7 @@ void Print(int* a, size_t n)
 void ShellSort(int* a, size_t n)
 {
 	assert(a);
-	int gap = 3;//½«Êı×é·Ö×é
+	int gap = 3;//å°†æ•°ç»„åˆ†ç»„
 	int end;
 	int tmp;
 	while (gap)
@@ -21,9 +21,9 @@ void ShellSort(int* a, size_t n)
 		{
 			end = i + gap;
 			tmp = a[end + gap];
-			while (gap + end < n)//µ¥´ÎÅÅĞò
+			while (gap + end < n)//å•æ¬¡æ’åº
 			{
-				if (a[end] > tmp)//´óÓÚÔòÏòºóÒÆ¶¯Êı¾İ
+				if (a[end] > tmp)//å¤§äºåˆ™å‘åç§»åŠ¨æ•°æ®
 				{
 					a[end + gap] = a[end];
 					end -= gap;
@@ -31,12 +31,13 @@ void ShellSort(int* a, size_t n)
 				else
 					break;
 			}
-			//ÕÒµ½²åÈëÊı¾İµÄÕıÈ·Î»ÖÃ£¬½øĞĞ²åÈë
+			//æ‰¾åˆ°æ’å…¥æ•°æ®çš„æ­£ç¡®ä½ç½®ï¼Œè¿›è¡Œæ’å…¥
 			a[end + gap] = tmp;
 		}
 		gap /= 2;
 	}
 }
+
 void TestShellSort()
 {
 	int a[] = { 9,8,7,6,10,4,3,2,1,0,5 };
