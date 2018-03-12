@@ -9,16 +9,16 @@ void Print(int* a, size_t n)
 	}
 	printf("\n");
 }
-void InsertSort(int* a, size_t n)//直接插入排序
+void InsertSort(int* a, size_t n)//鐩存帴鎻掑叆鎺掑簭
 {
 	assert(n);
 	for (size_t i = 0; i < n - 1; i++)
 	{
 		int end = i;
 		int tmp = a[end + 1];
-		while (end >= 0)//单次排序
+		while (end >= 0)//鍗曟鎺掑簭
 		{
-			if (a[end] > tmp)//查找比tmp小的位置,并且后移数据
+			if (a[end] > tmp)//鏌ユ壘姣攖mp灏忕殑浣嶇疆,骞朵笖鍚庣Щ鏁版嵁
 			{
 				a[end + 1] = a[end];
 				end--;
@@ -29,6 +29,7 @@ void InsertSort(int* a, size_t n)//直接插入排序
 		a[end + 1] = tmp;
 	}
 }
+
 void TestInsertSort()
 {
 	int arr[] = { 2,8,3,4,7,9,6,0,1,5 };
