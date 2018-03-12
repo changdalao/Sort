@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<assert.h>
+
+void Print(int* a, size_t n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void AdJustDown(int* a, int n, int root)//向下调整
+{
+	assert(a);
+	int parent = root;
+	int child = root * 2 + 1;
+	while (child < n)
+	{
+		if ((child + 1 < n) && (a[child] < a[child + 1]))//选取左右孩子较大的一个
+			++child;
+		if (a[parent] < a[child])
+		{
+			int tmp = a[parent];
+			a[parent] = a[child];
+			a[child] = tmp;
+			//parent child 交换后，可能影响整个堆结构，需将其所在的路径重新调整
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else
+			break;
+	}
+}
+void HeapSort(int* a, size_t n)
+{
+	assert(n);
+	for (int i = (n - 2) / 2; i >= 0; i--)//i类型不能选用size_t，不然死循环
+	{
+		AdJustDown(a, n, i);//建堆
+	}
+	int end = n - 1;
+	while (end > 0)
+	{
+		int tmp = a[0];
+		a[0] = a[end];
+		a[end] = tmp;
+		AdJustDown(a, end, 0);
+		end--;
+	}
+}
+void TestHeapSort()
+{
+	int a[] = { 9,8,7,6,4,3,10,2,1,0,5 };
+	HeapSort(a, sizeof(a) / sizeof(a[0]));
+	Print(a, sizeof(a) / sizeof(a[0]));
+}
