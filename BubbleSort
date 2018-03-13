@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<assert.h>
+
+void Print(int* a, size_t n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void Swap(int* a, int* b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+void BubbleSort(int* a, size_t n)
+{
+	assert(n);
+	for (int prev = 0; prev < n; prev++)
+	{
+		int flag = 0;
+		for (int cur = prev + 1; cur < n; cur++)
+		{
+			if (a[prev] > a[cur])
+			{
+				Swap(&a[prev], &a[cur]);
+				flag = 1;
+			}
+		}
+		if (0 == flag)
+			break;
+	}
+}
+void TestBubbleSort()
+{
+	int a[] = { 9,8,7,6,4,3,10,2,1,0,5 };
+	BubbleSort(a, sizeof(a) / sizeof(a[0]));
+	Print(a, sizeof(a) / sizeof(a[0]));
+}
